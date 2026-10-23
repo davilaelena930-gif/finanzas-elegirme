@@ -1,546 +1,429 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espacio Elegirme - Bienestar & Finanzas Conscientes</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-cream: #FAF8F5;
-      --card-bg: #FFFFFF;
-      --text-main: #2C3E35;
-      --text-muted: #6B7C73;
-      --gold: #D4AF37;
-      --gold-light: #F4E8C1;
-      --green-accent: #3A5A40;
-      --green-light: #E8F0EC;
-      --border-color: #E2E8E4;
-      --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      --radius: 16px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacio Elegirme - Bienestar & Finanzas Conscientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --text-main: #2C3531;
+            --text-muted: #6B7280;
+            --accent-gold: #D4AF37;
+            --accent-gold-hover: #AA8C2C;
+            --accent-green: #3B5A45;
+            --border-soft: #E5E0D8;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    body {
-      background-color: var(--bg-cream);
-      color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-      padding-bottom: 80px;
-    }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px 15px 100px 15px;
+        }
 
-    .app-container {
-      width: 100%;
-      max-width: 430px;
-      background: var(--bg-cream);
-      min-height: 100vh;
-      position: relative;
-      padding: 20px 16px;
-    }
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-    /* Header */
-    .app-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .app-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-    }
-    .app-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--green-accent);
-      margin-top: 4px;
-    }
+        header {
+            text-align: center;
+            padding: 10px 0;
+        }
 
-    /* Dynamic Views */
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
+        .brand-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
 
-    /* Main Card Image */
-    .hero-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
-      border: 1px solid var(--border-color);
-    }
-    .hero-img-container {
-      position: relative;
-      width: 100%;
-      max-height: 480px;
-      overflow: hidden;
-    }
-    .hero-img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+        .brand-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.85rem;
+            color: var(--accent-green);
+            font-weight: 600;
+        }
 
-    /* Quotation Card */
-    .quote-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 18px;
-      margin-bottom: 20px;
-      border: 1px solid var(--gold-light);
-      box-shadow: var(--shadow);
-    }
-    .quote-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .quote-text {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.95rem;
-      color: var(--text-main);
-      line-height: 1.5;
-    }
+        .profile-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-soft);
+            text-align: center;
+            overflow: hidden;
+        }
 
-    /* Summary Cards (Finances) */
-    .finance-summary {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .summary-card {
-      background: var(--card-bg);
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow);
-    }
-    .summary-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-    .summary-amount {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--green-accent);
-    }
-    .summary-amount.expense {
-      color: #C0392B;
-    }
-    .summary-amount.gold {
-      color: #B8860B;
-    }
+        .profile-img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 14px;
+            display: block;
+        }
 
-    /* Action Button */
-    .btn-action {
-      width: 100%;
-      padding: 14px;
-      background: var(--green-accent);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(58, 90, 64, 0.2);
-    }
+        .quote-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--accent-gold);
+            text-align: center;
+        }
 
-    /* Category Buttons */
-    .category-pills {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      margin-bottom: 16px;
-    }
-    .pill {
-      padding: 8px 14px;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      white-space: nowrap;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-    .pill.active {
-      background: var(--gold-light);
-      border-color: var(--gold);
-      color: var(--text-main);
-      font-weight: 600;
-    }
+        .quote-badge {
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
 
-    /* List Items */
-    .movement-item {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      border: 1px solid var(--border-color);
-    }
-    .movement-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-    .movement-cat {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    .movement-val {
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-    .movement-val.income { color: #27AE60; }
-    .movement-val.expense { color: #C0392B; }
+        .quote-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
 
-    /* Modal Form */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .modal-content {
-      background: white;
-      border-radius: var(--radius);
-      padding: 24px;
-      width: 100%;
-      max-width: 380px;
-    }
-    .form-group {
-      margin-bottom: 16px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
+        .section-view {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            animation: fadeIn 0.3s ease;
+        }
 
-    /* Navigation Bar */
-    .nav-bar {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 430px;
-      background: var(--card-bg);
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-      border-top: 1px solid var(--border-color);
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
-      z-index: 100;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .nav-item svg {
-      width: 22px;
-      height: 22px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-    }
-    .nav-item.active {
-      color: var(--green-accent);
-      font-weight: 700;
-    }
-    .nav-item.active .gold-icon {
-      stroke: var(--gold);
-      fill: var(--gold-light);
-    }
-  </style>
+        .section-view.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-soft);
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            color: var(--accent-green);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 8px 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-primary);
+            font-size: 0.95rem;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold-hover);
+        }
+
+        .tx-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tx-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-soft);
+        }
+
+        .tx-item:last-child {
+            border-bottom: none;
+        }
+
+        .tx-desc {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .tx-category {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .tx-amount.ingreso {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+
+        .tx-amount.gasto {
+            color: #C62828;
+            font-weight: 600;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border-soft);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 20px 0;
+            box-shadow: var(--shadow-md);
+            z-index: 100;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-btn.active {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="app-container">
-    <header class="app-header">
-      <div class="app-subtitle">ESPACIO ELEGIRME</div>
-      <h1 class="app-title">Bienestar & Finanzas Conscientes</h1>
-    </header>
+    <div class="app-container">
+        
+        <header>
+            <div class="brand-subtitle">Espacio Elegirme</div>
+            <h1 class="brand-title">Bienestar & Finanzas Conscientes</h1>
+        </header>
 
-    <!-- PESTAÑA 1: ELEGIRME -->
-    <div id="tab-elegirme" class="tab-content active">
-      <div class="hero-card">
-        <div class="hero-img-container">
-          <!-- Foto oficial subida por Elena -->
-          <img src="https://i.ibb.co/ZRG18rgX/Sonr-e-sue-a-y-el-gete-3.png" alt="Elena Dávila - Espacio Elegirme">
-        </div>
-      </div>
+        <!-- Pestaña 1: Elegirme -->
+        <div id="view-elegirme" class="section-view active">
+            <div class="profile-card">
+                <img src="https://i.ibb.co/6803C1R/Sonr-e-sue-a-y-el-gete.png" alt="Elena Dávila" class="profile-img">
+            </div>
 
-      <div class="quote-card">
-        <div class="quote-title">
-          <span>🌿</span> ELEGIRME ES MI PRIORIDAD
+            <div class="quote-card">
+                <span class="quote-badge">🍃 Elegirme es mi prioridad</span>
+                <p class="quote-text">"El dinero no es más que una energía de tranquilidad cuando aprendemos a administrarlo desde el amor y la presencia consciente."</p>
+            </div>
         </div>
-        <p class="quote-text">
-          "El dinero no es más que una energía de tranquilidad cuando aprendemos a administrarlo desde el amor y la presencia consciente."
-        </p>
-      </div>
 
-      <div class="quote-card" style="border-color: var(--gold);">
-        <div class="quote-title">
-          <span>✨</span> PERLITA DE LUZ FINANCIERA
+        <!-- Pestaña 2: Finanzas -->
+        <div id="view-finanzas" class="section-view">
+            <div class="card">
+                <div class="card-title">Balance Actual</div>
+                <div class="balance-amount" id="total-balance">$ UYU 0.00</div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Nuevo Registro</div>
+                <form id="tx-form" class="form-group">
+                    <input type="text" id="desc" placeholder="Descripción (ej: Consulta, Taller)" required>
+                    <input type="number" id="amount" placeholder="Monto ($ UYU)" step="0.01" required>
+                    <select id="type">
+                        <option value="ingreso">Ingreso (+)</option>
+                        <option value="gasto">Gasto (-)</option>
+                    </select>
+                    <button type="submit" class="btn-primary">Registrar Movimiento</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Historial Reciente</div>
+                <ul class="tx-list" id="tx-list">
+                    <li style="text-align:center; color: var(--text-muted); font-size: 0.85rem; padding: 10px 0;">Aún no hay movimientos registrados</li>
+                </ul>
+            </div>
         </div>
-        <p class="quote-text" id="perlita-text">
-          "Elegirme es regalarme tiempo en calma, sabiendo que cuidar la economía del hogar es cuidar la paz de quienes amo."
-        </p>
-        <button onclick="nuevaPerlita()" style="margin-top: 10px; background: none; border: none; color: var(--gold); font-size: 0.8rem; font-weight: 600; cursor: pointer;">
-          Otra reflexión 🔄
+
+        <!-- Pestaña 3: Reflexión -->
+        <div id="view-reflexion" class="section-view">
+            <div class="card">
+                <div class="card-title">Diario de Intención Financiera</div>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+                    Escribe tu intención para el uso consciente de tus recursos en este día.
+                </p>
+                <textarea id="journal-entry" style="width:100%; height:100px; padding:12px; border-radius:10px; border:1px solid var(--border-soft); font-size:0.9rem; outline:none;" placeholder="Hoy elijo gastar desde la paz y la gratitud..."></textarea>
+                <button class="btn-primary" style="margin-top:10px;" onclick="saveJournal()">Guardar Reflexión</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navegación Inferior -->
+    <nav>
+        <button class="nav-btn active" onclick="switchTab('elegirme', this)">
+            <span class="nav-icon">⭐</span>
+            <span>Elegirme</span>
         </button>
-      </div>
-    </div>
-
-    <!-- PESTAÑA 2: FINANZAS -->
-    <div id="tab-finanzas" class="tab-content">
-      <div class="finance-summary">
-        <div class="summary-card">
-          <div class="summary-label">Entradas del mes</div>
-          <div class="summary-amount" id="total-entradas">$ UYU 0</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-label">Gastos del mes</div>
-          <div class="summary-amount expense" id="total-gastos">$ UYU 0</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-label">Balance Disponible</div>
-          <div class="summary-amount" id="total-balance">$ UYU 0</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-label">Reservas / Ahorro</div>
-          <div class="summary-amount gold" id="total-reservas">$ UYU 0</div>
-        </div>
-      </div>
-
-      <button class="btn-action" onclick="abrirModal()">
-        <span>+</span> Anotar Entrada o Gasto de Dinero
-      </button>
-
-      <div class="category-pills">
-        <div class="pill active" onclick="filtrarCategoria('todas', this)">Todas</div>
-        <div class="pill" onclick="filtrarCategoria('hogar', this)">Gasto Hogar</div>
-        <div class="pill" onclick="filtrarCategoria('alquiler', this)">Alquiler / Vivienda</div>
-        <div class="pill" onclick="filtrarCategoria('auto', this)">Vehículo / Auto</div>
-        <div class="pill" onclick="filtrarCategoria('seguros', this)">Seguros y Serv.</div>
-        <div class="pill" onclick="filtrarCategoria('extras', this)">Extras / Ahorro</div>
-      </div>
-
-      <h3 style="font-size: 0.9rem; margin-bottom: 12px; color: var(--green-accent);">Movimientos Registrados</h3>
-      <div id="lista-movimientos">
-        <!-- Se cargan dinámicamente -->
-      </div>
-    </div>
-
-    <!-- PESTAÑA 3: REFLEXIÓN -->
-    <div id="tab-reflexion" class="tab-content">
-      <div class="quote-card">
-        <div class="quote-title"><span>🧘‍♀️</span> PAUSA CONSCIENTE ANTES DE COMPRAR</div>
-        <p class="quote-text">
-          "¿Nace este gasto de una decisión o deseo genuino, o estoy intentando aliviar un cansancio o emoción del día?"
-        </p>
-      </div>
-
-      <div style="background: white; padding: 18px; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 20px;">
-        <h4 style="font-size: 0.85rem; color: var(--gold); margin-bottom: 10px;">Transformando creencias sobre el dinero:</h4>
-        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
-          <div style="padding: 8px; background: var(--bg-cream); border-radius: 8px;">💡 <b>"El dinero se va rápido"</b> → <i>"El dinero fluye en orden y vuelve a mí multiplicada en paz."</i></div>
-          <div style="padding: 8px; background: var(--bg-cream); border-radius: 8px;">💡 <b>"Gastar en mí me da culpa"</b> → <i>"Invertir en mi bienestar es la decisión más sabia."</i></div>
-        </div>
-      </div>
-
-      <div class="quote-card">
-        <div class="quote-title"><span>✍️</span> MI DIARIO DE FINANZAS CONSCIENTES</div>
-        <textarea id="diario-input" style="width:100%; height:80px; border:1px solid var(--border-color); border-radius:8px; padding:8px; margin: 8px 0;" placeholder="Escribe tu reflexión del día..."></textarea>
-        <button class="btn-action" style="margin-bottom:0;" onclick="guardarDiario()">Guardar en mi diario</button>
-      </div>
-    </div>
-
-    <!-- NAVEGACIÓN INFERIOR CON ÍCONOS DORADOS -->
-    <nav class="nav-bar">
-      <button class="nav-item active" onclick="cambiarPestana('elegirme', this)">
-        <svg viewBox="0 0 24 24"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" class="gold-icon"/></svg>
-        <span>Elegirme</span>
-      </button>
-      <button class="nav-item" onclick="cambiarPestana('finanzas', this)">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M9 9h6M9 15h6" class="gold-icon"/></svg>
-        <span>Finanzas</span>
-      </button>
-      <button class="nav-item" onclick="cambiarPestana('reflexion', this)">
-        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z" class="gold-icon"/></svg>
-        <span>Reflexión</span>
-      </button>
+        <button class="nav-btn" onclick="switchTab('finanzas', this)">
+            <span class="nav-icon">⚖️</span>
+            <span>Finanzas</span>
+        </button>
+        <button class="nav-btn" onclick="switchTab('reflexion', this)">
+            <span class="nav-icon">☆</span>
+            <span>Reflexión</span>
+        </button>
     </nav>
 
-  </div>
+    <script>
+        let transactions = JSON.parse(localStorage.getItem('elegirme_txs')) || [];
 
-  <!-- MODAL PARA ANOTAR ENTRADA/GASTO -->
-  <div class="modal" id="modal-form">
-    <div class="modal-content">
-      <h3 style="margin-bottom: 16px; color: var(--green-accent);">Registrar Movimiento</h3>
-      <div class="form-group">
-        <label>Tipo de movimiento</label>
-        <select id="form-tipo">
-          <option value="entrada">Entrada (+ Dinero recibido)</option>
-          <option value="gasto">Gasto (- Dinero que sale)</option>
-          <option value="reserva">Reserva (+ Ahorro guardado)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Categoría</label>
-        <select id="form-cat">
-          <option value="hogar">Gasto Hogar (Luz UTE, Agua OSE, Súper)</option>
-          <option value="alquiler">Alquiler / Vivienda</option>
-          <option value="auto">Vehículo / Auto (Nafta, Patente, Seguro)</option>
-          <option value="seguros">Seguros y Servicios</option>
-          <option value="extras">Extras / Ahorros</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Concepto o Detalle</label>
-        <input type="text" id="form-desc" placeholder="Ej: Luz UTE, Súper, Nafta...">
-      </div>
-      <div class="form-group">
-        <label>Monto ($ UYU)</label>
-        <input type="number" id="form-monto" placeholder="Ej: 3500">
-      </div>
-      <div style="display: flex; gap: 8px;">
-        <button class="btn-action" style="background:#888;" onclick="cerrarModal()">Cancelar</button>
-        <button class="btn-action" onclick="guardarMovimiento()">Guardar</button>
-      </div>
-    </div>
-  </div>
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.section-view').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(`view-${tabId}`).classList.add('active');
+            element.classList.add('active');
+        }
 
-  <script>
-    let movimientos = JSON.parse(localStorage.getItem('movimientos_elegirme')) || [];
+        document.getElementById('tx-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const desc = document.getElementById('desc').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const type = document.getElementById('type').value;
 
-    const perlitas = [
-      "Elegirme es regalarme tiempo en calma, sabiendo que cuidar la economía del hogar es cuidar la paz de quienes amo.",
-      "Administrar mi dinero con presencia es un acto de respeto hacia mi esfuerzo.",
-      "Cada gasto consciente es un voto a favor de mi serenidad y estabilidad futura."
-    ];
+            transactions.push({ desc, amount, type, date: new Date().toLocaleDateString() });
+            localStorage.setItem('elegirme_txs', JSON.stringify(transactions));
+            
+            document.getElementById('desc').value = '';
+            document.getElementById('amount').value = '';
+            updateUI();
+        });
 
-    function cambiarPestana(tabId, el) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      document.getElementById('tab-' + tabId).classList.add('active');
-      el.classList.add('active');
-    }
+        function updateUI() {
+            const listEl = document.getElementById('tx-list');
+            const balanceEl = document.getElementById('total-balance');
 
-    function nuevaPerlita() {
-      const random = perlitas[Math.floor(Math.random() * perlitas.length)];
-      document.getElementById('perlita-text').innerText = '"' + random + '"';
-    }
+            if (transactions.length === 0) {
+                listEl.innerHTML = '<li style="text-align:center; color: var(--text-muted); font-size: 0.85rem; padding: 10px 0;">Aún no hay movimientos registrados</li>';
+                balanceEl.innerText = '$ UYU 0.00';
+                return;
+            }
 
-    function abrirModal() { document.getElementById('modal-form').style.display = 'flex'; }
-    function cerrarModal() { document.getElementById('modal-form').style.display = 'none'; }
+            let total = 0;
+            listEl.innerHTML = '';
 
-    function guardarMovimiento() {
-      const tipo = document.getElementById('form-tipo').value;
-      const cat = document.getElementById('form-cat').value;
-      const desc = document.getElementById('form-desc').value || 'Sin detalle';
-      const monto = parseFloat(document.getElementById('form-monto').value) || 0;
+            transactions.slice().reverse().forEach(tx => {
+                if (tx.type === 'ingreso') total += tx.amount;
+                else total -= tx.amount;
 
-      if(monto <= 0) return alert('Por favor ingresa un monto válido.');
+                const li = document.createElement('li');
+                li.className = 'tx-item';
+                li.innerHTML = `
+                    <div>
+                        <div class="tx-desc">${tx.desc}</div>
+                        <div class="tx-category">${tx.date}</div>
+                    </div>
+                    <div class="tx-amount ${tx.type}">
+                        ${tx.type === 'ingreso' ? '+' : '-'} $ UYU ${tx.amount.toFixed(2)}
+                    </div>
+                `;
+                listEl.appendChild(li);
+            });
 
-      movimientos.push({ tipo, cat, desc, monto, fecha: new Date().toLocaleDateString() });
-      localStorage.setItem('movimientos_elegirme', JSON.stringify(movimientos));
-      cerrarModal();
-      actualizarPantalla();
-    }
+            balanceEl.innerText = `$ UYU ${total.toFixed(2)}`;
+        }
 
-    function actualizarPantalla() {
-      let ent = 0, gas = 0, res = 0;
-      const lista = document.getElementById('lista-movimientos');
-      lista.innerHTML = '';
+        function saveJournal() {
+            const text = document.getElementById('journal-entry').value;
+            if(text) {
+                localStorage.setItem('elegirme_journal', text);
+                alert('Reflexión guardada con éxito.');
+            }
+        }
 
-      movimientos.forEach(m => {
-        if(m.tipo === 'entrada') ent += m.monto;
-        if(m.tipo === 'gasto') gas += m.monto;
-        if(m.tipo === 'reserva') res += m.monto;
+        // Cargar reflexiones guardadas si existen
+        const savedJournal = localStorage.getItem('elegirme_journal');
+        if(savedJournal) {
+            document.getElementById('journal-entry').value = savedJournal;
+        }
 
-        const item = document.createElement('div');
-        item.className = 'movement-item';
-        item.innerHTML = `
-          <div>
-            <div class="movement-title">${m.desc}</div>
-            <div class="movement-cat">${m.cat.toUpperCase()} - ${m.fecha}</div>
-          </div>
-          <div class="movement-val ${m.tipo === 'entrada' ? 'income' : 'expense'}">
-            ${m.tipo === 'entrada' ? '+' : '-'} $ ${m.monto.toLocaleString()}
-          </div>
-        `;
-        lista.appendChild(item);
-      });
-
-      document.getElementById('total-entradas').innerText = '$ UYU ' + ent.toLocaleString();
-      document.getElementById('total-gastos').innerText = '$ UYU ' + gas.toLocaleString();
-      document.getElementById('total-balance').innerText = '$ UYU ' + (ent - gas).toLocaleString();
-      document.getElementById('total-reservas').innerText = '$ UYU ' + res.toLocaleString();
-    }
-
-    function guardarDiario() {
-      const text = document.getElementById('diario-input').value;
-      if(text) {
-        localStorage.setItem('diario_elegirme', text);
-        alert('Reflexión guardada en tu dispositivo.');
-      }
-    }
-
-    actualizarPantalla();
-  </script>
+        updateUI();
+    </script>
+</body>
+</html>
 </body>
 </html>
