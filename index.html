@@ -190,7 +190,7 @@
             background: #FFFDF9;
         }
 
-        /* FINANZAS */
+        /* FINANZAS DETALLADAS */
         .balance-main {
             text-align: center;
             padding: 10px 0;
@@ -239,6 +239,37 @@
 
         .stat-value.ingreso { color: var(--accent-green); }
         .stat-value.gasto { color: var(--accent-red); }
+
+        .cat-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .cat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            padding: 8px 12px;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .cat-row-title {
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cat-row-val {
+            font-weight: 700;
+            color: var(--accent-green);
+        }
 
         /* FORMULARIOS */
         .form-group {
@@ -434,8 +465,9 @@
             </div>
         </div>
 
-        <!-- PESTAÑA 2: FINANZAS -->
+        <!-- PESTAÑA 2: FINANZAS DETALLADAS -->
         <div id="view-finanzas" class="section-view">
+            <!-- BALANCE GENERAL -->
             <div class="card">
                 <div class="balance-main">
                     <div class="balance-label">Balance Consciente Total</div>
@@ -443,41 +475,88 @@
                 </div>
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-label">Ingresos</div>
+                        <div class="stat-label">Ingresos Totales</div>
                         <div class="stat-value ingreso" id="stat-ingresos">$ UYU 0.00</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Gastos</div>
+                        <div class="stat-label">Gastos Totales</div>
                         <div class="stat-value gasto" id="stat-gastos">$ UYU 0.00</div>
                     </div>
                 </div>
             </div>
 
+            <!-- DESGLOSE DETALLADO POR RUBRO -->
             <div class="card">
-                <div class="card-title">Nuevo Registro Consciente</div>
+                <div class="card-title">Resumen por Rubro</div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px;">Controla exactamente cuánto destino tiene cada peso:</p>
+                <div class="cat-breakdown" id="cat-breakdown">
+                    <div class="cat-row">
+                        <span class="cat-row-title">🏠 Vivienda, Alquiler & Casa</span>
+                        <span class="cat-row-val" id="cat-val-vivienda">$ UYU 0.00</span>
+                    </div>
+                    <div class="cat-row">
+                        <span class="cat-row-title">🛒 Comida & Supermercado</span>
+                        <span class="cat-row-val" id="cat-val-comida">$ UYU 0.00</span>
+                    </div>
+                    <div class="cat-row">
+                        <span class="cat-row-title">🚗 Auto, Nafta & Seguro</span>
+                        <span class="cat-row-val" id="cat-val-auto">$ UYU 0.00</span>
+                    </div>
+                    <div class="cat-row">
+                        <span class="cat-row-title">💡 Luz, Agua, Teléfono & Cable</span>
+                        <span class="cat-row-val" id="cat-val-servicios">$ UYU 0.00</span>
+                    </div>
+                    <div class="cat-row">
+                        <span class="cat-row-title">💎 Consultas & Servicios Profesionales</span>
+                        <span class="cat-row-val" id="cat-val-profesional">$ UYU 0.00</span>
+                    </div>
+                    <div class="cat-row">
+                        <span class="cat-row-title">🌱 Ahorro, Resguardo & Extras</span>
+                        <span class="cat-row-val" id="cat-val-ahorro">$ UYU 0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NUEVO REGISTRO DETALLADO -->
+            <div class="card">
+                <div class="card-title">Nuevo Registro de Movimiento</div>
                 <form id="tx-form" class="form-group" style="margin-top: 10px;">
-                    <input type="text" id="desc" class="input-field" placeholder="Descripción (ej: Consulta, Taller, Terapia)" required>
-                    <input type="number" id="amount" class="input-field" placeholder="Monto ($ UYU)" step="0.01" required>
+                    <input type="text" id="desc" class="input-field" placeholder="Detalle (ej: Nafta, Alquiler, Súper, Taller)" required>
+                    <input type="number" id="amount" class="input-field" placeholder="Monto en ($ UYU)" step="0.01" required>
+                    
                     <select id="category" class="select-field" required>
-                        <option value="" disabled selected>Selecciona Categoría</option>
-                        <option value="Servicios Profesional">Servicios / Consultas</option>
-                        <option value="Talleres">Talleres / Cursos</option>
-                        <option value="Bienestar Personal">Bienestar / Cuidado Personal</option>
-                        <option value="Hogar y Vida">Hogar y Alimentación</option>
-                        <option value="Otros">Otros Movimientos</option>
+                        <option value="" disabled selected>Elige la Categoría Específica</option>
+                        <optgroup label="🏠 Hogar & Servicios">
+                            <option value="vivienda">Alquiler / Mantenimiento Casa</option>
+                            <option value="servicios">Luz / Agua / Gastos Comunes</option>
+                            <option value="servicios">Teléfono / Celular / Internet / Cable</option>
+                        </optgroup>
+                        <optgroup label="🛒 Alimentación & Auto">
+                            <option value="comida">Supermercado / Almacén / Comida</option>
+                            <option value="auto">Auto / Nafta / Patente / Taller</option>
+                            <option value="auto">Seguros (Auto / Casa / Salud)</option>
+                        </optgroup>
+                        <optgroup label="💼 Ingresos Profesionales & Ahorro">
+                            <option value="profesional">Consultas / Talleres / Trabajo</option>
+                            <option value="ahorro">Ahorro Consciente / Fondo Resguardo</option>
+                            <option value="ahorro">Extras / Gustos / Varios</option>
+                        </optgroup>
                     </select>
+
                     <select id="type" class="select-field">
-                        <option value="ingreso">Ingreso (+)</option>
-                        <option value="gasto">Gasto (-)</option>
+                        <option value="gasto">Gasto / Salida (-)</option>
+                        <option value="ingreso">Ingreso / Entrada (+)</option>
                     </select>
-                    <button type="submit" class="btn-primary">Registrar Movimiento</button>
+                    
+                    <button type="submit" class="btn-primary">Guardar Registro en $ UYU</button>
                 </form>
             </div>
 
+            <!-- HISTORIAL REGISTRADO -->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Historial de Movimientos</div>
-                    <button onclick="clearHistory()" style="background:none; border:none; color:var(--text-muted); font-size:0.75rem; cursor:pointer;">Limpiar todo</button>
+                    <div class="card-title">Historial Detallado</div>
+                    <button onclick="clearHistory()" style="background:none; border:none; color:var(--text-muted); font-size:0.75rem; cursor:pointer;">Reiniciar historial</button>
                 </div>
                 <ul class="tx-list" id="tx-list">
                     <li style="text-align:center; color: var(--text-muted); font-size: 0.85rem; padding: 15px 0;">Aún no hay movimientos registrados</li>
@@ -529,7 +608,6 @@
 
     <script>
         let transactions = JSON.parse(localStorage.getItem('elegirme_txs')) || [];
-        let selectedMood = localStorage.getItem('elegirme_mood') || '';
 
         function switchTab(tabId, element) {
             document.querySelectorAll('.section-view').forEach(el => el.classList.remove('active'));
@@ -543,13 +621,15 @@
             e.preventDefault();
             const desc = document.getElementById('desc').value;
             const amount = parseFloat(document.getElementById('amount').value);
-            const category = document.getElementById('category').value;
+            const categoryKey = document.getElementById('category').value;
+            const categoryText = document.getElementById('category').options[document.getElementById('category').selectedIndex].text;
             const type = document.getElementById('type').value;
 
             transactions.push({ 
                 desc, 
                 amount, 
-                category,
+                categoryKey,
+                categoryText,
                 type, 
                 date: new Date().toLocaleDateString('es-UY', { day: '2-digit', month: '2-digit', year: 'numeric' }) 
             });
@@ -568,11 +648,25 @@
             const ingresosEl = document.getElementById('stat-ingresos');
             const gastosEl = document.getElementById('stat-gastos');
 
+            let totalsByCat = {
+                vivienda: 0,
+                comida: 0,
+                auto: 0,
+                servicios: 0,
+                profesional: 0,
+                ahorro: 0
+            };
+
             if (transactions.length === 0) {
                 listEl.innerHTML = '<li style="text-align:center; color: var(--text-muted); font-size: 0.85rem; padding: 15px 0;">Aún no hay movimientos registrados</li>';
                 balanceEl.innerText = '$ UYU 0.00';
                 ingresosEl.innerText = '$ UYU 0.00';
                 gastosEl.innerText = '$ UYU 0.00';
+                
+                for(let key in totalsByCat) {
+                    const el = document.getElementById(`cat-val-${key}`);
+                    if(el) el.innerText = '$ UYU 0.00';
+                }
                 return;
             }
 
@@ -581,15 +675,21 @@
             listEl.innerHTML = '';
 
             transactions.slice().reverse().forEach(tx => {
-                if (tx.type === 'ingreso') totalIngresos += tx.amount;
-                else totalGastos += tx.amount;
+                if (tx.type === 'ingreso') {
+                    totalIngresos += tx.amount;
+                } else {
+                    totalGastos += tx.amount;
+                    if (totalsByCat.hasOwnProperty(tx.categoryKey)) {
+                        totalsByCat[tx.categoryKey] += tx.amount;
+                    }
+                }
 
                 const li = document.createElement('li');
                 li.className = 'tx-item';
                 li.innerHTML = `
                     <div class="tx-info">
                         <div class="tx-desc">${tx.desc}</div>
-                        <div class="tx-meta">${tx.category || 'General'} • ${tx.date}</div>
+                        <div class="tx-meta">${tx.categoryText || 'General'} • ${tx.date}</div>
                     </div>
                     <div class="tx-amount ${tx.type}">
                         ${tx.type === 'ingreso' ? '+' : '-'} $ UYU ${tx.amount.toFixed(2)}
@@ -602,6 +702,11 @@
             balanceEl.innerText = `$ UYU ${totalBalance.toFixed(2)}`;
             ingresosEl.innerText = `$ UYU ${totalIngresos.toFixed(2)}`;
             gastosEl.innerText = `$ UYU ${totalGastos.toFixed(2)}`;
+
+            for(let key in totalsByCat) {
+                const el = document.getElementById(`cat-val-${key}`);
+                if(el) el.innerText = `$ UYU ${totalsByCat[key].toFixed(2)}`;
+            }
         }
 
         function toggleAffirmation(el) {
@@ -631,7 +736,6 @@
             }
         }
 
-        // Cargar reflexiones guardadas
         const savedJournal = localStorage.getItem('elegirme_journal');
         if(savedJournal) {
             document.getElementById('journal-entry').value = savedJournal;
